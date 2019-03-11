@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
 import Header from './Header';
 import Formulario from './Formulario';
+import Resumen from './Resumen';
 import { obtenerDiferenciaAnio, calcularMarca, obtenerPlan } from '../helper';
+import Resultado from './Resultado';
 
 class App extends Component {
+	state = {
+		resultado: '',
+		datos: {}
+	};
+
 	cotizarSeguro = (datos) => {
 		const { marca, plan, year } = datos;
 
@@ -26,6 +33,17 @@ class App extends Component {
 		let incrementoPlan = obtenerPlan(plan);
 
 		resultado = parseFloat(incrementoPlan * resultado).toFixed(2);
+
+		const datosAuto = {
+			marcar: marca,
+			plan: plan,
+			year: year
+		};
+
+		this.setState({
+			resultado: resultado,
+			datos: datosAuto
+		});
 	};
 
 	render() {
@@ -35,6 +53,8 @@ class App extends Component {
 
 				<div className="contenedor-formulario">
 					<Formulario cotizarSeguro={this.cotizarSeguro} />
+					<Resumen datos={this.state.datos} resultado={this.state.resultado} />
+					<Resultado resultado={this.state.resultado} />
 				</div>
 			</div>
 		);
