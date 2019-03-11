@@ -10,9 +10,9 @@ class Resumen extends Component {
 		return (
 			<div className="resumen">
 				<h2>Summary Quotation</h2>
-				<li>Marca: {primeraMayuscula(marcar)}</li>
+				<li>Brand: {primeraMayuscula(marcar)}</li>
 				<li>Plan: {primeraMayuscula(plan)}</li>
-				<li>Año del auto: {year}</li>
+				<li>Year of the car: {year}</li>
 			</div>
 		);
 	};
